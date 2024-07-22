@@ -1,8 +1,15 @@
 import React from 'react'
+import NavBar from '../components/NavBar'
+import Slide from '../components/Slide'
+import Categories from '../components/Categories'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <>
+    <NavBar />
+    <Slide />
+    <Categories />
+    </>
   )
 }
 

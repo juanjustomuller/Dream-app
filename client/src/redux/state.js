@@ -11,13 +11,17 @@ export const userSlice = createSlice({
     /*reducers define las funciones que permiten modificar el estado. Aquí, setLogin es un reductor que actualiza el estado con la información del usuario y el token.*/
     reducers: {
         setLogin: (state, action) => {
-            state.user = action.payload.user
-            state.token = action.payload.token
+            state.user = action.payload.user;
+            state.token = action.payload.token;
+        },
+        setLogOut: (state) => {
+            state.user = null;
+            state.token = null;
         }
     }
 });
 
-export const {setLogin} = userSlice.actions
+export const {setLogin, setLogOut} = userSlice.actions
 export default userSlice.reducer
 
 //userSlice.actions contiene las acciones generadas por el slice. setLogin se exporta para que pueda ser usado en otros componentes o archivos.
