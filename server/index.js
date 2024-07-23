@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 
 const authRoute = require("./routes/auth.js") //authRoute es una variable que almacena las rutas definidas en auth.js
+const listingRoutes = require("./routes/listing.js") //listingRoute es una variable que almacena las rutas definidas en listing.js
 
 app.use(cors())
 app.use(express.json())
@@ -12,6 +13,7 @@ app.use(express.static('public'))
 
 /*RUTAS*/
 app.use("/auth", authRoute) //le dice a Express que cuando alguien haga una solicitud a /auth, se debe manejar con las rutas definidas en authRoute
+app.use("/properties", listingRoutes) 
 
 /*MOONGOSE SETUP*/
 const PORT = 3001;
