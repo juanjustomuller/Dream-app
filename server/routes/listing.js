@@ -84,7 +84,7 @@ router.post("/create", upload.array('listingPhotos'), async (req, res) => {
 
 
 /*GET LISTINGS*/
-router.get("/create", async (req, res) => {
+router.get("/", async (req, res) => {
     const qCategory = req.query.category
     try {
         let listings
