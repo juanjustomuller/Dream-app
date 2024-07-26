@@ -1,7 +1,8 @@
 import { ArrowForwardIos, ArrowBackIosNew } from "@mui/icons-material";
 import "../styles/ListingCard.scss";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+//import { useDispatch } from "react-redux";
 
 const ListingCard = ({
   listingId,
@@ -13,6 +14,10 @@ const ListingCard = ({
   category,
   type,
   price,
+  startDate,
+  endDate,
+  totalPrice,
+  booking,
 }) => {
   //SLIDER FOR IMAGES
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,8 +33,16 @@ const ListingCard = ({
     setCurrentIndex((prevIndex) => (prevIndex + 1) % listingPhotoPaths.length);
   };
 
+  const navigate = useNavigate();
+  //const dispatch = useDispatch();
+
   return (
-    <div className="listing-card">
+    <div
+      className="listing-card"
+      onClick={() => {
+        navigate(`/properties/${listingId}`);
+      }}
+    >
       <div className="slider-container">
         <div
           className="slider"
@@ -62,11 +75,26 @@ const ListingCard = ({
         </div>
       </div>
 
-        <h3>{city}, {province}, {country}</h3>
-        <p>{category}</p>
-        <p>{type}</p>
-        <p><span>${price}</span> per night</p>
+      <h3>
+        {city}, {province}, {country}
+      </h3>
+      <p>{category}</p>
 
+      {!booking ? (
+        <>
+          <p>{type}</p>
+          <p>
+            <span>${price}</span> per night
+          </p>
+        </>
+      ) : (
+        <>
+          <p>{startDate} - {endDate}</p>
+          <p>
+            <span>${totalPrice}</span> total
+          </p>
+        </>
+      )}
     </div>
   );
 };

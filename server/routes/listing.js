@@ -91,7 +91,7 @@ router.get("/", async (req, res) => {
         if(qCategory) {
             listings = await Listing.find({ category: qCategory}).populate("creator")
         } else {
-            listings = await Listing.find()
+            listings = await Listing.find().populate("creator")
         }
 
         res.status(200).json(listings)
@@ -100,5 +100,16 @@ router.get("/", async (req, res) => {
         console.log(error);
     }
 })
+
+/*GET LISTING DETAILS*/
+router.get("/:listingId", async (req, res) => {
+    try {
+        const {listingId} = req.params
+        const listings = await Listing.findById(listingId).populate("creator");
+        res.status(200).json(listings)
+    } catch (error) {
+        res.status(400).json({message: "Listing can not be found!", error: error.message})
+    }
+}) 
 
 module.exports = router
