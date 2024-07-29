@@ -38,7 +38,7 @@ const LoginPage = () => {
 
     } catch (error) {
       console.log("error del handlesubmit del login", error);
-      res.send(500).json({message: error.message})
+      
     }
 
   }
