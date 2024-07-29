@@ -112,13 +112,13 @@ const RegisterPage = () => {
             required
           />
           <label htmlFor="image">
-            <img src="/assets/addImage.png" alt="add Profile Photo" />
+            <img src="/assets/addImage.png" alt="add profile photo" />
             <p>Carga tu foto de perfil</p>
           </label>
           {formData.profileImage && (
                 <img
                 src={URL.createObjectURL(formData.profileImage)}
-                alt="profile photo"
+                alt="Selected profile photo"
                 style={{ maxWidth: "80px"}}
                 />
             )}
