@@ -5,6 +5,7 @@ import Loader from "../components/Loader.jsx";
 import NavBar from "../components/NavBar";
 import { setTripList } from "../redux/state";
 import ListingCard from "../components/ListingCard.jsx";
+import Footer from "../components/Footer.jsx";
 
 const TripList = () => {
   const [loading, setLoading] = useState(true);
@@ -59,6 +60,7 @@ const TripList = () => {
           />
         ))}
       </div>
+      <Footer />
     </>
   );
 };

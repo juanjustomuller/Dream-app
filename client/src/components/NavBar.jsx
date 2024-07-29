@@ -4,14 +4,18 @@ import { IconButton } from "@mui/material";
 import { Person, Search, Menu } from "@mui/icons-material";
 import variables from "../styles/variables.scss";
 import "../styles/NavBar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setLogOut } from "../redux/state";
 
 const NavBar = () => {
   const [dropdownMenu, setDropDownMenu] = useState(false);
   const user = useSelector((state) => state.user);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const [search, setSearch] = useState("");
+
+  const navigate = useNavigate()
 
   return (
     <div className="navbar">
@@ -20,9 +24,19 @@ const NavBar = () => {
       </a>
 
       <div className="navbar_search">
-        <input type="text" placeholder="Buscar..." />
-        <IconButton>
-          <Search sx={{ color: variables.pinkred }} />
+        <input
+          type="text"
+          placeholder="Search ..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <IconButton disabled={search === ""}>
+          <Search
+            sx={{ color: variables.pinkred }}
+            onClick={() => {
+              navigate(`/properties/search/${search}`);
+            }}
+          />
         </IconButton>
       </div>
 
@@ -37,7 +51,10 @@ const NavBar = () => {
           </a>
         )}
 
-        <button className="navbar_right_account" onClick={() => setDropDownMenu(!dropdownMenu)}>
+        <button
+          className="navbar_right_account"
+          onClick={() => setDropDownMenu(!dropdownMenu)}
+        >
           <Menu sx={{ color: variables.darkgrey }} />
           {!user ? (
             <Person sx={{ color: variables.darkgrey }} />

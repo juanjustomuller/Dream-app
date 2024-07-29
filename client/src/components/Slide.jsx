@@ -5,8 +5,8 @@ const Slide = () => {
   return (
     <div className="slide">
       <h1>
-        Bienvenido a casa! sin importar a donde vayas <br /> Disfruta del
-        presente. Crea tus recuerdos
+      Welcome Home! Anywhere you roam <br /> Stay in the moment. Make your
+      memories
       </h1>
     </div>
   );

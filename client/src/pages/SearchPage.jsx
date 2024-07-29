@@ -1,45 +1,42 @@
-import { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
-import Loader from "../components/Loader";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import "../styles/List.scss"
+import { useSelector,useDispatch  } from "react-redux";
 import { setListings } from "../redux/state";
+import { useEffect, useState } from "react";
+import Loader from "../components/Loader"
 import ListingCard from "../components/ListingCard";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer"
+import NavBar from "../components/NavBar";
 
-const CategoryPage = () => {
-  const [loading, setLoading] = useState(true);
-  const { category } = useParams();
+const SearchPage = () => {
+  const [loading, setLoading] = useState(true)
+  const { search } = useParams()
+  const listings = useSelector((state) => state.listings)
 
   const dispatch = useDispatch()
-  const listings = useSelector((state) => state.listings);
 
-  const getFeedListings = async () => {
+  const getSearchListings = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/properties?category=${category}`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
-      dispatch(setListings({ listings: data }));
-      setLoading(false);
-    } catch (error) {
-      console.log("Fetch Listings failed", error.message);
+      const response = await fetch(`http://localhost:3001/properties/search/${search}`, {
+        method: "GET"
+      })
+
+      const data = await response.json()
+      dispatch(setListings({ listings: data }))
+      setLoading(false)
+    } catch (err) {
+      console.log("Fetch Search List failed!", err.message)
     }
-  };
+  }
 
   useEffect(() => {
-    getFeedListings();
-  }, [category]);
-
-  return loading ? (
-    <Loader />
-  ) : (
+    getSearchListings()
+  }, [search])
+  
+  return loading ? <Loader /> : (
     <>
       <NavBar />
-      <h1 className="title-list">{category} listings</h1>
+      <h1 className="title-list">{search}</h1>
       <div className="list">
         {listings?.map(
           ({
@@ -72,6 +69,6 @@ const CategoryPage = () => {
       <Footer />
     </>
   );
-};
+}
 
-export default CategoryPage;
+export default SearchPage

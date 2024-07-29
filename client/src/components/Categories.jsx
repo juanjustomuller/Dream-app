@@ -5,12 +5,11 @@ import "../styles/Categories.scss";
 const Categories = () => {
   return (
     <div className="categories">
-      <h1>Descubre las mejores cateogiras</h1>
+      <h1>Explore Top Categories</h1>
       <p>
-        Descubre nuestra amplia gama de alquileres vacacionales que se adaptan a
-        todo tipo de viajeros. Sumérgete en la cultura local, disfruta de las
-        comodidades del hogar y crea recuerdos inolvidables en tu destino
-        soñado.
+      Explore our wide range of vacation rentals that cater to all types of
+        travelers. Immerse yourself in the local culture, enjoy the comforts of
+        home, and create unforgettable memories in your dream destination.
       </p>
 
 {/*No hago un map pq hay muchas categorias(que luego las voy a mostrar mas abajo)
