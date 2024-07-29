@@ -1,8 +1,13 @@
-import { ArrowForwardIos, ArrowBackIosNew } from "@mui/icons-material";
+import {
+  ArrowForwardIos,
+  ArrowBackIosNew,
+  Favorite,
+} from "@mui/icons-material";
 import "../styles/ListingCard.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setWishList } from "../redux/state";
 
 const ListingCard = ({
   listingId,
@@ -34,7 +39,31 @@ const ListingCard = ({
   };
 
   const navigate = useNavigate();
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  /*ADD TO WISHLIST */
+  const user = useSelector((state) => state.user);
+  const wishList = user.wishList || [];
+
+  const isLiked = wishList.find((item) => item?._id === listingId);
+
+  const patchWishList = async () => {
+    if (user?.id !== creator._id) {
+      const response = await fetch(
+        `http://localhost:3001/users/${user?._id}/${listingId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json", 
+          },
+        }
+      );
+      const data = await response.json();
+      dispatch(setWishList(data.wishList));
+    } else {
+      return;
+    }
+  };
 
   return (
     <div
@@ -57,6 +86,7 @@ const ListingCard = ({
               <div
                 className="prev-button"
                 onClick={(e) => {
+                  e.stopPropagation();
                   goToPrevSlide(e);
                 }}
               >
@@ -65,6 +95,7 @@ const ListingCard = ({
               <div
                 className="next-button"
                 onClick={(e) => {
+                  e.stopPropagation();
                   goToNextSlide(e);
                 }}
               >
@@ -89,12 +120,29 @@ const ListingCard = ({
         </>
       ) : (
         <>
-          <p>{startDate} - {endDate}</p>
+          <p>
+            {startDate} - {endDate}
+          </p>
           <p>
             <span>${totalPrice}</span> total
           </p>
         </>
       )}
+
+      <button
+        className="favorite"
+        onClick={(e) => {
+          e.stopPropagation();
+          patchWishList();
+        }}
+        disabled={!user}
+      >
+        {isLiked ? (
+          <Favorite sx={{ color: "red" }} />
+        ) : (
+          <Favorite sx={{ color: "white" }} />
+        )}
+      </button>
     </div>
   );
 };

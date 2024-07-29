@@ -23,11 +23,18 @@ export const userSlice = createSlice({
         },
         setTripList: (state, action) => {
             state.user.tripList = action.payload
+        },
+        setWishList: (state, action) => {
+            state.user.wishList = action.payload
+        },
+        setPropertyList: (state, action) => {
+            console.log(action.payload)
+            state.user.propertyList = action.payload
         }
     }
 });
 
-export const {setLogin, setLogOut, setListings, setTripList} = userSlice.actions
+export const {setLogin, setLogOut, setListings, setTripList, setWishList, setPropertyList} = userSlice.actions
 export default userSlice.reducer
 
 //userSlice.actions contiene las acciones generadas por el slice. setLogin se exporta para que pueda ser usado en otros componentes o archivos.

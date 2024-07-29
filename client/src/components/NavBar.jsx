@@ -29,11 +29,11 @@ const NavBar = () => {
       <div className="navbar_right">
         {user ? (
           <a href="/create-listing" className="host">
-            Conviértete en anfitrión
+            Become a Host
           </a>
         ) : (
           <a href="/login" className="host">
-            Conviértete en anfitrión
+            Become a Host
           </a>
         )}
 
@@ -55,18 +55,18 @@ const NavBar = () => {
 
         {dropdownMenu && !user && (
           <div className="navbar_right_accountmenu">
-            <Link to="/login">Iniciar Sesión</Link>
-            <Link to="/register">Registrarse</Link>
+            <Link to="/login">Log In</Link>
+            <Link to="/register">Register</Link>
           </div>
         )}
 
         {dropdownMenu && user && (
           <div className="navbar_right_accountmenu">
-            <Link to="">Lista de viajes</Link>
-            <Link to="">Lista de deseos</Link>
-            <Link to="">Lista de propiedades</Link>
-            <Link to="">Lista de reservas</Link>
-            <Link to="">Hazte anfitrión</Link>
+            <Link to={`/${user._id}/trips`}>Trip List</Link>
+            <Link to={`/${user._id}/wishList`}>Wish List</Link>
+            <Link to={`/${user._id}/properties`}>Property List</Link>
+            <Link to="">Reservation List</Link>
+            <Link to="">Become a Host</Link>
 
             <Link
               to="/login"
@@ -74,7 +74,7 @@ const NavBar = () => {
                 dispatch(setLogOut());
               }}
             >
-              Cerrar Sesión
+              Log Out
             </Link>
           </div>
         )}
