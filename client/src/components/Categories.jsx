@@ -18,7 +18,7 @@ es por eso que corto con el slice a las mejores categorias, que serian 6, de la 
 ahi si mapeo sobre esas 6*/}
       <div className="categories_list">
         {categories?.slice(1, 7).map((category, index) => (
-            <Link to="" key={category.label}>
+            <Link to={`/properties/category/${category.label}`} key={category.label}>
                 <div className="category" key={index}>
                     <img src={category.img} alt={category.label} />
                     <div className="overlay"></div>
