@@ -20,7 +20,7 @@ app.use("/bookings", bookingRoutes)
 app.use("/users", userRoutes)
 
 /*MOONGOSE SETUP*/
-const PORT = 3001;
+const PORT = process.env.PORT;
 mongoose.connect(process.env.MONGO_URL, {dbName: "Dream_app"})
     .then(() => {
         app.listen(PORT, () => console.log(`Puerto ${PORT} corriendo en el servidor`));
