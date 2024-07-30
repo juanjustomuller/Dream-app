@@ -7,7 +7,7 @@ const dotenv = require("dotenv").config();
 const authRoutes = require(".auth.js") //authRoute es una variable que almacena las rutas definidas en auth.js
 const listingRoutes = require(".listing.js") //listingRoute es una variable que almacena las rutas definidas en listing.js
 const bookingRoutes = require(".booking.js")
-const userRoutes = require("..user.js")
+const userRoutes = require(".user.js")
 
 app.use(cors())
 app.use(express.json())
