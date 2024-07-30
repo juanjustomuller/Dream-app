@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "../styles/List.scss";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader.jsx";
@@ -14,7 +14,7 @@ const TripList = () => {
 
   const dispatch = useDispatch();
 
-  const getTripList = async () => {
+  const getTripList = useCallback(async () => {
     try {
       const response = await fetch(
         `http://localhost:3001/users/${userId}/trips`,
@@ -29,11 +29,11 @@ const TripList = () => {
     } catch (error) {
       console.log("Fetch trip list failed!", error.message);
     }
-  };
+  }, [userId, dispatch]);
 
   useEffect(() => {
     getTripList();
-  }, [userId, getTripList]);
+  }, [getTripList]);
 
   return loading ? (
     <Loader />

@@ -64,7 +64,7 @@ const NavBar = () => {
                 "public",
                 ""
               )}`}
-              alt="profile photo"
+              alt="profile"
               style={{ objectFit: "cover", borderRadius: "50%" }}
             />
           )}

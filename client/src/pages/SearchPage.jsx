@@ -31,7 +31,7 @@ const SearchPage = () => {
 
     useEffect(() => {
       getSearchListings()
-    }, [search, getSearchListings])
+    }, [search])
   
   return loading ? <Loader /> : (
     <>
