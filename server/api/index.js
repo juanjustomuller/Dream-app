@@ -4,10 +4,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 
-const authRoutes = require(".auth.js") //authRoute es una variable que almacena las rutas definidas en auth.js
-const listingRoutes = require(".listing.js") //listingRoute es una variable que almacena las rutas definidas en listing.js
-const bookingRoutes = require(".booking.js")
-const userRoutes = require(".user.js")
+const authRoutes = require("../routes/auth.js") //authRoute es una variable que almacena las rutas definidas en auth.js
+const listingRoutes = require("../routes/listing.js") //listingRoute es una variable que almacena las rutas definidas en listing.js
+const bookingRoutes = require("../routes/booking.js")
+const userRoutes = require("../routes/user.js")
 
 app.use(cors())
 app.use(express.json())
