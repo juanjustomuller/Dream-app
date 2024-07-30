@@ -11,6 +11,8 @@ import NavBar from '../components/NavBar';
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer.jsx";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +22,7 @@ const ListingDetails = () => {
   const getListingDetails = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/properties/${listingId}`,
+        `${SERVER_URL}/properties/${listingId}`,
         {
           method: "GET",
         }
@@ -73,7 +75,7 @@ const ListingDetails = () => {
         totalPrice: listing.price * dayCount,
       }
 
-      const response = await fetch("http://localhost:3001/bookings/create", {
+      const response = await fetch(`${SERVER_URL}/bookings/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -102,7 +104,7 @@ const ListingDetails = () => {
           {listing.listingPhotoPaths?.map((item, index) => (
             <img
             key={index}
-              src={`http://localhost:3001/${item.replace(
+              src={`${SERVER_URL}/${item.replace(
                 "public",
                 ""
               )}`}
@@ -123,7 +125,7 @@ const ListingDetails = () => {
 
         <div className="profile">
           <img
-            src={`http://localhost:3001/${listing.creator.profileImagePath?.replace(
+            src={`${SERVER_URL}/${listing.creator.profileImagePath?.replace(
               "public",
               ""
             )}`}

@@ -7,6 +7,8 @@ import { setTripList } from "../redux/state";
 import ListingCard from "../components/ListingCard.jsx";
 import Footer from "../components/Footer.jsx";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const TripList = () => {
   const [loading, setLoading] = useState(true);
   const userId = useSelector((state) => state.user?._id);
@@ -17,7 +19,7 @@ const TripList = () => {
   const getTripList = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/trips`,
+        `${SERVER_URL}/users/${userId}/trips`,
         {
           method: "GET",
         }

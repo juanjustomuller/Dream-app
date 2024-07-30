@@ -7,6 +7,8 @@ import "../styles/NavBar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { setLogOut } from "../redux/state";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const NavBar = () => {
   const [dropdownMenu, setDropDownMenu] = useState(false);
   const user = useSelector((state) => state.user);
@@ -60,7 +62,7 @@ const NavBar = () => {
             <Person sx={{ color: variables.darkgrey }} />
           ) : (
             <img
-              src={`http://localhost:3001/${user.profileImagePath.replace(
+              src={`${SERVER_URL}/${user.profileImagePath.replace(
                 "public",
                 ""
               )}`}

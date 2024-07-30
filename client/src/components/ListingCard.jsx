@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setWishList } from "../redux/state";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const ListingCard = ({
   listingId,
   creator,
@@ -50,7 +52,7 @@ const ListingCard = ({
   const patchWishList = async () => {
     if (user?.id !== creator._id) {
       const response = await fetch(
-        `http://localhost:3001/users/${user?._id}/${listingId}`,
+        `${SERVER_URL}/users/${user?._id}/${listingId}`,
         {
           method: "PATCH",
           headers: {
@@ -80,8 +82,8 @@ const ListingCard = ({
           {listingPhotoPaths?.map((photo, index) => (
             <div key={index} className="slide">
               <img
-                src={`http://localhost:3001/${photo.replace("public", "")}`}
-                alt={`Imagen de la propiedad en ${index + 1}`}
+                src={`${SERVER_URL}/${photo.replace("public", "")}`}
+                alt={`Imagen de la propiedad en  ${index + 1}`}
               />
               <div
                 className="prev-button"

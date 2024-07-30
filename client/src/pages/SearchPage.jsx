@@ -8,6 +8,8 @@ import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
 import NavBar from "../components/NavBar";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const SearchPage = () => {
   const [loading, setLoading] = useState(true)
   const { search } = useParams()
@@ -17,7 +19,7 @@ const SearchPage = () => {
 
   const getSearchListings = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/properties/search/${search}`, {
+      const response = await fetch(`${SERVER_URL}/properties/search/${search}`, {
         method: "GET"
       })
 

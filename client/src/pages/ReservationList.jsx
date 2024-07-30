@@ -7,6 +7,8 @@ import { setReservationList } from "../redux/state";
 import ListingCard from "../components/ListingCard.jsx";
 import Footer from "../components/Footer.jsx";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const ReservationList = () => {
   const [loading, setLoading] = useState(true);
   const userId = useSelector((state) => state.user?._id);
@@ -17,7 +19,7 @@ const ReservationList = () => {
   const getReservationList = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/reservations`,
+        `${SERVER_URL}/users/${userId}/reservations`,
         {
           method: "GET",
         }

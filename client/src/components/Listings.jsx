@@ -6,6 +6,8 @@ import Loader from "./Loader.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../redux/state.js";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const Listings = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -17,8 +19,8 @@ const Listings = () => {
     try {
       const response = await fetch(
         selectedCategory !== "All"
-          ? `http://localhost:3001/properties?category=${selectedCategory}`
-          : "http://localhost:3001/properties",
+          ? `${SERVER_URL}/properties?category=${selectedCategory}`
+          : `${SERVER_URL}/properties`,
         {
           method: "GET",
         }
